@@ -8,8 +8,17 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/*
+ * Візерунок, який містить солодощі
+ * Містить потрібні функції для лабораторної роботи
+ */
+
 public class Gift {
-private List<Sweet> sweets = new ArrayList<>();
+private List<Sweet> sweets;
+
+    public Gift() {
+        this.sweets = new ArrayList<>();
+    }
 
     public void addSweet(Sweet... sweets) {
         this.sweets.addAll(Arrays.asList(sweets));

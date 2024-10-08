@@ -1,7 +1,10 @@
 package org.example.models;
 
 import java.util.Objects;
-
+/*
+* Абстракций клас для цукерок, шоколадок та печива
+* Містить потрібні атрибути та функції
+*/
 abstract public class Sweet {
     private String name;
     private double weight; // вага в грамах
@@ -10,7 +13,7 @@ abstract public class Sweet {
     public Sweet(String name, double weight, double sugarContent) {
         this.name = name;
         this.weight = weight;
-        this.sugarContent = sugarContent;
+        this.sugarContent = Math.min(weight, sugarContent);
     }
 
     public String getName() {
@@ -34,7 +37,7 @@ abstract public class Sweet {
     }
 
     public void setSugarContent(double sugarContent) {
-        this.sugarContent = sugarContent;
+        this.sugarContent = Math.min(weight, sugarContent);
     }
 
     @Override
@@ -58,4 +61,5 @@ abstract public class Sweet {
     public int hashCode() {
         return Objects.hash(name, weight, sugarContent);
     }
+
 }
