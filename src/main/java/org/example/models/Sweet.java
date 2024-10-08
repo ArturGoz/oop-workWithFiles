@@ -1,5 +1,7 @@
 package org.example.models;
 
+import java.util.Objects;
+
 abstract public class Sweet {
     private String name;
     private double weight; // вага в грамах
@@ -44,4 +46,16 @@ abstract public class Sweet {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Sweet sweet = (Sweet) o;
+        return Double.compare(weight, sweet.weight) == 0 && Double.compare(sugarContent, sweet.sugarContent) == 0 && Objects.equals(name, sweet.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, weight, sugarContent);
+    }
 }
