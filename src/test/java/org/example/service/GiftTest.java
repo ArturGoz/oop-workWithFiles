@@ -15,14 +15,14 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GiftTest {
+    Gift service;
+    Sweet candy = new Candy("B", 50, 30);
+    Sweet chocolate = new Chocolate("C", 100, 100);
+    Sweet cookie = new Cookie("A", 100, 10);
 
     @Test
     public void testAdd() {
-        Gift service = new Gift();
-
-        Sweet candy = new Candy("B", 50, 30);
-        Sweet chocolate = new Chocolate("C", 100, 100);
-        Sweet cookie = new Cookie("A", 100, 10);
+        service = new Gift();
 
         service.addSweet(candy,chocolate,cookie);
         assertEquals(3, service.getSweets().size());
@@ -34,7 +34,7 @@ public class GiftTest {
 
     @Test
     public void testTotalWeightCalculation() {
-        Gift service = new Gift();
+        service = new Gift();
         service.addSweet(new Candy("Candy", 50, 30));
         service.addSweet(new Chocolate("Twix", 100, 100));
         service.addSweet(new Cookie("Mariya", 100, 10));
@@ -43,10 +43,8 @@ public class GiftTest {
 
     @Test
     public void testSortBySugar() {
-        Gift service = new Gift();
-        service.addSweet(new Candy("B", 50, 30));
-        service.addSweet(new Chocolate("C", 100, 100));
-        service.addSweet(new Cookie("A", 100, 10));
+        service = new Gift();
+        service.addSweet(candy,chocolate,cookie);
         service.sortBySugarContent();
 
         List<Sweet> sweets = service.getSweets();
@@ -56,18 +54,25 @@ public class GiftTest {
     }
 
     @Test
-    public void testFindSweetsBySugarRange() {
-        Gift service = new Gift();
-
-        Sweet candy = new Candy("B", 50, 30);
-        Sweet chocolate = new Chocolate("C", 100, 100);
-        Sweet cookie = new Cookie("A", 100, 10);
+    public void testFindSweetsBySugarInRange() {
+        service = new Gift();
 
         service.addSweet(candy,chocolate,cookie);
 
         assertEquals(service.getSweets(), service.findSweetsBySugarRange(0,100));
         assertEquals(Arrays.asList(candy,cookie), service.findSweetsBySugarRange(0,30));
-        assertEquals(List.of(), service.findSweetsBySugarRange(111,200));
+    }
+
+    @Test
+    public void testFindSweetsBySugarOutOfRange() {
+        service = new Gift();
+
+        service.addSweet(candy,chocolate,cookie);
+
+        assertEquals(List.of(), service.findSweetsBySugarRange(0,5));
+        assertEquals(List.of(), service.findSweetsBySugarRange(35,40));
+        assertEquals(List.of(), service.findSweetsBySugarRange(70,80));
+        assertEquals(List.of(), service.findSweetsBySugarRange(150,200));
     }
 
 
