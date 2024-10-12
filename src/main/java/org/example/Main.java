@@ -1,19 +1,16 @@
 package org.example;
 
 
-import org.example.models.Candy;
-import org.example.models.Chocolate;
-import org.example.models.Cookie;
 import org.example.models.Sweet;
 import org.example.service.Gift;
+import org.example.utilities.FileUtils;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
+
 
 public class Main {
-    static double minWeight;
-    static double maxWeight;
+    static double minSugar;
+    static double maxSugar;
     static String filePath = "sweetsData.txt";
     static String rangeFileName = "setWeightRange.txt";
 
@@ -25,17 +22,17 @@ public class Main {
             System.out.println(sweet);
         }
 
-        Optional<double[]> weightRange = FileUtils.loadWeightRangeFromFile(rangeFileName);
+        Optional<double[]> sugarRange = FileUtils.loadSugarRangeFromFile(rangeFileName);
 
-        if (weightRange.isPresent()) {
-            double[] range = weightRange.get();
-             minWeight = range[0];
-             maxWeight = range[1];
-            System.out.println("Мінімальна вага: " + minWeight + ", Максимальна вага: " + maxWeight);
+        if (sugarRange.isPresent()) {
+            double[] range = sugarRange.get();
+            minSugar = range[0];
+            maxSugar = range[1];
+            System.out.println("Мінімальна вага цукру: " + minSugar + ", Максимальна вага цукру: " + maxSugar);
         } else {
             System.out.println("Не вдалося зчитати діапазон ваги з файлу.");
         }
-        System.out.println(gift.findSweetsBySugarRange(minWeight,maxWeight).toString());
+        System.out.println(gift.findSweetsBySugarRange(minSugar, maxSugar).toString());
     }
 }
 

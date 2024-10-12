@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  */
 
 public class Gift {
-private List<Sweet> sweets;
+    private List<Sweet> sweets;
 
     public Gift() {
         this.sweets = new ArrayList<>();
@@ -24,10 +24,11 @@ private List<Sweet> sweets;
         this.sweets.addAll(Arrays.asList(sweets));
     }
 
-    public double getTotalWeight(){
+    public double getTotalWeight() {
         return sweets.stream().mapToDouble(Sweet::getWeight).sum();
     }
-    public void sortBySugarContent(){
+
+    public void sortBySugarContent() {
         sweets.sort(Comparator.comparingDouble(Sweet::getSugarContent));
     }
 

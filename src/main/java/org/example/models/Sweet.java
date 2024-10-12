@@ -1,10 +1,11 @@
 package org.example.models;
 
 import java.util.Objects;
+
 /*
-* Абстракций клас для цукерок, шоколадок та печива
-* Містить потрібні атрибути та функції
-*/
+ * Абстракций клас для цукерок, шоколадок та печива
+ * Містить потрібні атрибути та функції
+ */
 abstract public class Sweet {
     private String name;
     private double weight; // вага в грамах

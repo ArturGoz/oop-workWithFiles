@@ -1,12 +1,10 @@
-package org.example;
+package org.example.utilities;
 
 import org.example.models.Candy;
 import org.example.models.Chocolate;
-import org.example.models.Sweet;
 import org.example.service.Gift;
 
 import java.io.*;
-import java.util.List;
 import java.util.Optional;
 
 public class FileUtils {
@@ -30,9 +28,8 @@ public class FileUtils {
                     gift.addSweet(new Candy(name, weight, sugarContent));
                 } else if (name.toLowerCase().contains("шоколад")) {
                     gift.addSweet(new Chocolate(name, weight, sugarContent));
-                }
-                else if (name.toLowerCase().contains("печиво")) {
-                        gift.addSweet(new Chocolate(name, weight, sugarContent));
+                } else if (name.toLowerCase().contains("печиво")) {
+                    gift.addSweet(new Chocolate(name, weight, sugarContent));
                 } else {
                     // Інші типи солодощів
                     System.out.println("Невідомий тип солодощів: " + name);
@@ -45,7 +42,7 @@ public class FileUtils {
     }
 
     // Метод для зчитування діапазону ваги з файлу setWeightRange.txt
-    public static Optional<double[]> loadWeightRangeFromFile(String fileName) {
+    public static Optional<double[]> loadSugarRangeFromFile(String fileName) {
         try (InputStream inputStream = FileUtils.class.getClassLoader().getResourceAsStream(fileName);
              BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
 
