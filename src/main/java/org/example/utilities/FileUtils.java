@@ -2,6 +2,7 @@ package org.example.utilities;
 
 import org.example.models.Candy;
 import org.example.models.Chocolate;
+import org.example.models.Cookie;
 import org.example.service.Gift;
 
 import java.io.*;
@@ -22,14 +23,16 @@ public class FileUtils {
                 String name = data[0].trim();
                 int weight = Integer.parseInt(data[1].trim());
                 int sugarContent = Integer.parseInt(data[2].trim());
+                Object extraContent = null;
+                if (data.length > 3) extraContent = data[3].trim();
 
                 // Визначаємо тип солодощів на основі назви
                 if (name.toLowerCase().contains("цукерка")) {
-                    gift.addSweet(new Candy(name, weight, sugarContent));
+                    gift.addSweet(new Candy(name, weight, sugarContent, extraContent));
                 } else if (name.toLowerCase().contains("шоколад")) {
-                    gift.addSweet(new Chocolate(name, weight, sugarContent));
+                    gift.addSweet(new Chocolate(name, weight, sugarContent, extraContent));
                 } else if (name.toLowerCase().contains("печиво")) {
-                    gift.addSweet(new Chocolate(name, weight, sugarContent));
+                    gift.addSweet(new Cookie(name, weight, sugarContent, extraContent != null));
                 } else {
                     // Інші типи солодощів
                     System.out.println("Невідомий тип солодощів: " + name);

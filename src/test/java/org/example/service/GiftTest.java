@@ -16,14 +16,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GiftTest {
     Gift service;
-    Sweet candy = new Candy("B", 50, 30);
-    Sweet chocolate = new Chocolate("C", 100, 100);
-    Sweet cookie = new Cookie("A", 100, 10);
+    Sweet candy = new Candy("B", 50, 30,"Caramel");
+    Sweet chocolate = new Chocolate("C", 100, 100,"Milk");
+    Sweet cookie = new Cookie("A", 100, 10,true);
 
     @Test
     public void testAdd() {
         service = new Gift();
-
+        
         service.addSweet(candy,chocolate,cookie);
         assertEquals(3, service.getSweets().size());
 
@@ -35,9 +35,7 @@ public class GiftTest {
     @Test
     public void testTotalWeightCalculation() {
         service = new Gift();
-        service.addSweet(new Candy("Candy", 50, 30));
-        service.addSweet(new Chocolate("Twix", 100, 100));
-        service.addSweet(new Cookie("Mariya", 100, 10));
+        service.addSweet(candy,chocolate,cookie);
         assertEquals(50+100+100, service.getTotalWeight());
     }
 
@@ -56,7 +54,6 @@ public class GiftTest {
     @Test
     public void testFindSweetsBySugarInRange() {
         service = new Gift();
-
         service.addSweet(candy,chocolate,cookie);
 
         assertEquals(service.getSweets(), service.findSweetsBySugarRange(0,100));
@@ -66,7 +63,6 @@ public class GiftTest {
     @Test
     public void testFindSweetsBySugarOutOfRange() {
         service = new Gift();
-
         service.addSweet(candy,chocolate,cookie);
 
         assertEquals(List.of(), service.findSweetsBySugarRange(0,5));

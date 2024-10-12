@@ -19,7 +19,7 @@ public class Main {
 
         // Виводимо дані про солодощі
         for (Sweet sweet : gift.getSweets()) {
-            System.out.println(sweet);
+            sweet.printDetails();
         }
 
         Optional<double[]> sugarRange = FileUtils.loadSugarRangeFromFile(rangeFileName);
@@ -32,7 +32,8 @@ public class Main {
         } else {
             System.out.println("Не вдалося зчитати діапазон ваги з файлу.");
         }
-        System.out.println(gift.findSweetsBySugarRange(minSugar, maxSugar).toString());
+
+        gift.findSweetsBySugarRange(minSugar, maxSugar).forEach(Sweet::printDetails);
     }
 }
 

@@ -17,6 +17,8 @@ abstract public class Sweet {
         this.sugarContent = Math.min(weight, sugarContent);
     }
 
+    public abstract void printDetails(); // Абстрактний метод для виводу інформації про солодощі
+
     public String getName() {
         return name;
     }
@@ -41,26 +43,5 @@ abstract public class Sweet {
         this.sugarContent = Math.min(weight, sugarContent);
     }
 
-    @Override
-    public String toString() {
-        return "Sweet{" +
-                "name='" + name + '\'' +
-                ", weight=" + weight +
-                ", sugarContent=" + sugarContent +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Sweet sweet = (Sweet) o;
-        return Double.compare(weight, sweet.weight) == 0 && Double.compare(sugarContent, sweet.sugarContent) == 0 && Objects.equals(name, sweet.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, weight, sugarContent);
-    }
 
 }
